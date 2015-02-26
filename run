@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+# Check if overrides were provided
+BROKER_ID=${BROKER_ID:=0}
+LOG_DIRS=${LOG_DIRS:=/tmp/kafka-logs}
+NUM_PARTITIONS=${NUM_PARTITIONS:=1}
+ZOOKEEPER_CONNECT=${ZOOKEEPER_CONNECT:=localhost:2181}
+
+ADDR=$(/sbin/ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+
+CONF_FILE=$KAFKA_HOME/config/server.properties
+
+echo "broker.id=$BROKER_ID" > $CONF_FILE
+echo "log.dirs=$LOG_DIRS" >> $CONF_FILE
+echo "num.partitions=$NUM_PARTITIONS" >> $CONF_FILE
+echo "zookeeper.connect=$ZOOKEEPER_CONNECT" >> $CONF_FILE
+echo "advertised.host.name=$ADDR" >> $CONF_FILE
+
+$KAFKA_HOME/bin/kafka-server-start.sh $CONF_FILE
