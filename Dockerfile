@@ -4,7 +4,7 @@ MAINTAINER Kirk True <kirk@mustardgrain.com>
 
 CMD ["/sbin/my_init"]
 
-ENV KAFKA_VERSION 0.9.0.0
+ENV KAFKA_VERSION 0.9.0.1
 ENV KAFKA_LONG_VERSION kafka_2.11-$KAFKA_VERSION
 ENV KAFKA_URL http://www.us.apache.org/dist/kafka/$KAFKA_VERSION/$KAFKA_LONG_VERSION.tgz
 ENV KAFKA_HOME /opt/$KAFKA_LONG_VERSION
